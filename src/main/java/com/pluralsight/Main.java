@@ -23,11 +23,15 @@ public class Main {
                 //Need to prompt user for the deposit information and save it to the csv file
             } else if (option == "P") {
                 System.out.println("Enter your debit card information: ");
+                //Need to prompt user for the debit information and save it to the csv file
             } else if (option == "L") {
                 System.out.println("Here is the Ledger: ");
+                //Need to display the ledger screen
             }else{
                 System.out.println("----Application Closed----");
                 break;
+
+
             }
         }
     }
