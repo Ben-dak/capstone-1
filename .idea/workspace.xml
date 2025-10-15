@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="99aad524-b50c-4e52-a3fa-807e7c1feb30" name="Changes" comment="Printed transactions in the desired format.">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pluralsight/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pluralsight/Transaction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/transactions.csv" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Ben-dak&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Ben-dak/capstone-1.git&quot;,
+    &quot;accountId&quot;: &quot;8d2ab390-c6e1-4c4f-83e2-de2afc768bae&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="341DpGXuP02GqypDDRhnVKNlZPc" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Student/pluralsight/capstones/Capstone1&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Student/pluralsight/capstones/Capstone1/src/main/java/com/pluralsight/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Student\pluralsight\capstones\Capstone1\.mvn\src" />
+      <recent name="C:\Users\Student\pluralsight\capstones\Capstone1" />
+      <recent name="C:\Users\Student\pluralsight\capstones\Capstone1\.mvn" />
+      <recent name="C:\Users\Student\pluralsight\capstones\Capstone1\.idea" />
+      <recent name="C:\Users\Student\pluralsight\capstones\Capstone1\src\main\resources" />
+    </key>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="99aad524-b50c-4e52-a3fa-807e7c1feb30" name="Changes" comment="" />
+      <created>1760372369021</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1760372369021</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Restructured and created blueprints for my code to ensure each class will remain 20 lines or less.">
+      <option name="closed" value="true" />
+      <created>1760380905121</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1760380905121</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Restructured and created blueprints for my code to ensure each class will remain 20 lines or less.">
+      <option name="closed" value="true" />
+      <created>1760381039055</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1760381039055</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Restructured and created blueprints for my code to ensure each class will remain 20 lines or less.">
+      <option name="closed" value="true" />
+      <created>1760381084385</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1760381084385</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Set up my blueprints for the project and created comprehensive notes to ensure I am completing the code in a cleaner manner.">
+      <option name="closed" value="true" />
+      <created>1760385181374</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1760385181374</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Worked on main - added screen.">
+      <option name="closed" value="true" />
+      <created>1760467065578</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1760467065578</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Printed transactions in the desired format.">
+      <option name="closed" value="true" />
+      <created>1760567360710</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1760567360710</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Printed transactions in the desired format.">
+      <option name="closed" value="true" />
+      <created>1760568157423</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1760568157423</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Restructured and created blueprints for my code to ensure each class will remain 20 lines or less." />
+    <MESSAGE value="Set up my blueprints for the project and created comprehensive notes to ensure I am completing the code in a cleaner manner." />
+    <MESSAGE value="Worked on main - added screen." />
+    <MESSAGE value="Printed transactions in the desired format." />
+    <option name="LAST_COMMIT_MESSAGE" value="Printed transactions in the desired format." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/.mvn/src/src/main/java/com/pluralsight/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
