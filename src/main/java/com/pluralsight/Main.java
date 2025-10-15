@@ -23,6 +23,12 @@ public class Main {
         double price = 89.50;
         Transaction transactions = new Transaction(today, vendor, clock, desc, price);
 
+        System.out.printf("%s|%s|%s|%s|%.2f%n",
+                transactions.getDate(),
+                transactions.getTime(),
+                transactions.getDescription(),
+                transactions.getVendor(),
+                transactions.getAmount());
     }
 
     private static void mainMenu() {
