@@ -29,7 +29,6 @@ public class Main {
                 transactions.getDescription(),
                 transactions.getVendor(),
                 transactions.getAmount());
-
     }
 
     private static void mainMenu() {
