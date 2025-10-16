@@ -2,20 +2,25 @@ package com.pluralsight;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
-    ArrayList<Transaction> tList = new ArrayList<>();
+    static ArrayList<Transaction> tList = new ArrayList<>();
+    static Main app = new Main();
+    static Scanner myScanner = new Scanner(System.in);
+    static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-M-d|HH:mm:ss");
 
     public static void main(String[] args) {
         mainMenu();
 
     }
 
-    public void writer() { //"writer()" is a Method to output data
+    public static void writer() { //"writer()" is a Method to output data
         try (BufferedWriter bWriter = new BufferedWriter(
                 new FileWriter("src/main/resources/transactions.csv"))) {
             // Creates a BufferedWriter that wraps a FileWriter to write text to a file
@@ -35,7 +40,7 @@ public class Main {
         }
     }
 
-    public void readTransaction() {
+    public static void readTransaction() {
         try (BufferedReader bReader = new BufferedReader(new FileReader("src/main/resources/transactions.csv"))) {
             // Creates a BufferedReader that wraps a FileReader to read text from the file
             // try-with automatically closes bReader when done (even if an error happens)
@@ -64,8 +69,35 @@ public class Main {
 
     }
 
-    private static void mainMenu() { //Displays options
-        Scanner myScanner = new Scanner(System.in);//Creates a scanner object to read input
+    public static void addDeposit() {
+        boolean runAgain = true;
+        while (runAgain) {
+            try (FileWriter fileWriter = new FileWriter("src/main/resources/transactions.csv")) {
+                System.out.println("Enter an amount: ");
+                String amountString = myScanner.nextLine().trim();
+                System.out.println("Enter a description: ");
+                String description = myScanner.nextLine().trim();
+                System.out.println("Enter the vendor: ");
+                String vendor = myScanner.nextLine().trim();
+                double amount = Double.parseDouble(amountString);
+                Transaction deposit = new Transaction(description, vendor, amount);
+                tList.add(deposit);
+                String formattedDate = LocalDateTime.now().format(dateTimeFormatter);
+                fileWriter.write(String.format("%s|%s|%s|%.2f", formattedDate, description, vendor, amount));
+                runAgain = false;
+            }
+            catch (NumberFormatException ex) {
+                System.out.println("Error - enter a double");
+            }catch (IOException e) {
+                System.err.println("Error: " + e);
+            }
+
+        }
+    }
+
+    public static void mainMenu() {
+        readTransaction();
+        //Creates a scanner object to read input
         String userInput;// Variable to store options
         do { //do-while loop
             System.out.println("""
@@ -76,10 +108,14 @@ public class Main {
                     X) Exit
                     """);//Displays main menu text
             System.out.print("Choose an option: ");//prompts user
-            userInput = myScanner.next();//reads input then moves to next input
+            userInput = myScanner.next().trim();//reads input then moves to next input
 
-            switch (userInput) {//checks what user enters then performs action
-                case "D" -> System.out.println("Add Deposit selected...");
+            switch (userInput) { //checks what user enters then performs action
+                case "D" -> {
+                    System.out.println("Add Deposit selected...");
+                    myScanner.nextLine();
+                    addDeposit();
+                }
                 case "P" -> System.out.println("Make Payment selected...");
                 case "L" -> ledgerMenu();
                 case "X" -> System.out.println("Exiting application...");
@@ -88,12 +124,12 @@ public class Main {
         } while (!userInput.equals("X"));
     }
 
-    private static void ledgerMenu() {
+    public static void ledgerMenu() {
         Scanner myScanner = new Scanner(System.in);
         String userInput;
         do {
             System.out.println("""
-                    === Home Menu ===
+                    === Ledger Menu ===
                     A) Print all transactions
                     H) Exit
                     """);
@@ -102,7 +138,7 @@ public class Main {
 
             switch (userInput) {
                 case "A":
-                    printAllTransactions();
+                    printAllTransactions(tList);
                     break;
                 case "H":
                     System.out.println("Exiting application...");
@@ -113,16 +149,17 @@ public class Main {
         } while (!userInput.equals("H"));
     }
 
-    private static void printAllTransactions() {
-    }
-
-    static void printAllTransactions(ArrayList<Transaction> transactions) {
+    public static void printAllTransactions(ArrayList<Transaction> transactions) {
         if (transactions.isEmpty()) {
             System.out.println("No transactions found.");
             return;
         }
 
         System.out.println("=== All Transactions ===");
+
+        for (Transaction t : transactions) {
+            System.out.println(t);
+        }
 
     }
 

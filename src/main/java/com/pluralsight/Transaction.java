@@ -19,6 +19,14 @@ public class Transaction {
 
     }
 
+    public Transaction(String description, String vendor, double amount) {
+        this.date = LocalDate.now();
+        this.time = LocalTime.now();
+        this.description = description;
+        this.vendor = vendor;
+        this.amount = amount;
+    }
+
     public LocalDate getDate() {
         return date;
     }
