@@ -10,12 +10,12 @@ public class Transaction {
     String vendor;
     double amount;
 
-    public Transaction(LocalDate da, String v, LocalTime t, String de, double a) {
-        this.vendor = v;
-        this.date = da;
-        this.time = t;
-        this.description = de;
-        this.amount = a;
+    public Transaction(LocalDate date, LocalTime tm, String desc, String vend, double amt) {
+        this.vendor = vend;
+        this.date = date;
+        this.time = tm;
+        this.description = desc;
+        this.amount = amt;
 
     }
 
@@ -53,5 +53,9 @@ public class Transaction {
     }
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public String toString() {
+        return String.format("%s|%s|%s|%s|%.2f", date, time, description, vendor, amount); //pulls info from public Transaction above
     }
 }
