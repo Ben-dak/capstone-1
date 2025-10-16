@@ -8,92 +8,84 @@ import java.util.Scanner;
 
 public class Main {
 
-    String name;
-    ArrayList<Transaction> transList = new ArrayList<>();
-    private void bWriter(String string) {
-    }
+    ArrayList<Transaction> tList = new ArrayList<>();
 
     public static void main(String[] args) {
-        String fileName = "transactions.csv";
-        // mainMenu();
-
-        LocalDate today = LocalDate.now();
-        String vendor = "Amazon";
-        LocalTime clock = LocalTime.now();
-        String desc = "Keyboard";
-        double price = 89.50;
-        Transaction transactions = new Transaction(today, clock, desc, vendor, price);
+        mainMenu();
 
     }
 
-    public void writer() {
-        try (BufferedWriter bWriter = new BufferedWriter(new FileWriter("src/main/resources/transactions.csv"))) {
+    public void writer() { //"writer()" is a Method to output data
+        try (BufferedWriter bWriter = new BufferedWriter(
+                new FileWriter("src/main/resources/transactions.csv"))) {
+            // Creates a BufferedWriter that wraps a FileWriter to write text to a file
+            // The file will be created (or overwritten) at this path
 
-            bWriter.write("date|time|description|vendor|amount");//writing header
-            bWriter.newLine();
+            bWriter.write("date|time|description|vendor|amount"); //writes header to file
+            bWriter.newLine(); // Moves to a new line after writing the header
 
-            for (Transaction transactions : transList) {
-                bWriter.write(transactions.toString());
-                bWriter.newLine();
+
+            for (Transaction transactions : tList) { // Loops through each Transaction
+                bWriter.write(transactions.toString());// Converts the Transaction to text
+                bWriter.newLine();// Starts a new line for the next transaction
             }
 
-        } catch (IOException e) {
-            System.err.println("Error writing file: " + e.getMessage());
+        } catch (IOException e) { // If something goes wrong while writing
+            System.err.println("Error writing file: " + e.getMessage());// prints error message to the console
         }
     }
 
     public void readTransaction() {
         try (BufferedReader bReader = new BufferedReader(new FileReader("src/main/resources/transactions.csv"))) {
-
+            // Creates a BufferedReader that wraps a FileReader to read text from the file
+            // try-with automatically closes bReader when done (even if an error happens)
             String header = bReader.readLine();
+            // Reads the first line of the file (the header: "date|time|description|vendor|amount")
+            // Header is just read and ignored
+            String info; //info holds each line of text
 
-            String info;
-
-            while ((info = bReader.readLine()) != null) {
-                String[] parts = info.split("\\|");
-                LocalDate date = LocalDate.parse(parts[0]);
-                LocalTime time = LocalTime.parse(parts[1]);
+            while ((info = bReader.readLine()) != null) { // When readLine() returns null, it means there are no more lines
+                String[] parts = info.split("\\|"); // Splits the line into separate pieces using "|"
+                LocalDate date = LocalDate.parse(parts[0]); //converts date string into LocalDate object
+                LocalTime time = LocalTime.parse(parts[1]);//converts time string into LocalTime object
                 String description = parts[2];
                 String vendor = parts[3];
-                double amount = Double.parseDouble(parts[4]);
+                double amount = Double.parseDouble(parts[4]); // Converts the amount into a double
 
-                Transaction transactions = new Transaction(date, time, description, vendor, amount);
-                transList.add(transactions);
+                Transaction transactions = new Transaction(date, time, description, vendor, amount);// Creates a new Transaction object using the data we just read and converted
+                tList.add(transactions);// Adds this new Transaction object to the list (tList)
             }
 
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {// runs if the file can’t be found
             System.err.println("Error: " + e.getMessage());
-        } catch (IOException e) {
+        } catch (IOException e) {// This catch handles general input/output problems
             System.err.println("Error" + e.getMessage());
         }
 
     }
 
-
-
-
-    private static void mainMenu() {
-        Scanner myScanner = new Scanner(System.in);
-        String userInput;
-        do {
+    private static void mainMenu() { //Displays options
+        Scanner myScanner = new Scanner(System.in);//Creates a scanner object to read input
+        String userInput;// Variable to store options
+        do { //do-while loop
             System.out.println("""
                     === Home Menu ===
                     D) Add Deposit
                     P) Make Payment (Debit)
                     L) Ledger
                     X) Exit
-                    """);
-            System.out.print("Choose an option: ");
-            userInput = myScanner.next();
+                    """);//Displays main menu text
+            System.out.print("Choose an option: ");//prompts user
+            userInput = myScanner.next();//reads input then moves to next input
 
-            switch (userInput) {
+            switch (userInput) {//checks what user enters then performs action
                 case "D" -> System.out.println("Add Deposit selected...");
                 case "P" -> System.out.println("Make Payment selected...");
                 case "L" -> ledgerMenu();
                 case "X" -> System.out.println("Exiting application...");
                 default -> System.out.println("Invalid option. Please try again.");
             }
-        } while (userInput.equals("X"));
+        } while (!userInput.equals("X"));
     }
 
     private static void ledgerMenu() {
@@ -118,10 +110,19 @@ public class Main {
                 default:
                     System.out.println("Invalid option. Please try again.");
             }
-        } while (userInput.equals("H"));
+        } while (!userInput.equals("H"));
     }
 
-    static void printAllTransactions() {
+    private static void printAllTransactions() {
+    }
+
+    static void printAllTransactions(ArrayList<Transaction> transactions) {
+        if (transactions.isEmpty()) {
+            System.out.println("No transactions found.");
+            return;
+        }
+
+        System.out.println("=== All Transactions ===");
 
     }
 
