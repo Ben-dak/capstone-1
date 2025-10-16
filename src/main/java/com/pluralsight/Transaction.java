@@ -56,6 +56,6 @@ public class Transaction {
     }
 
     public String toString() {
-        return String.format("%s|%s|%s|%s|%.2f", date, time, description, vendor, amount); //pulls info from public Transaction above
-    }
+        return String.format("%s|%s|%s|%s|%.2f", date, time, description, vendor, amount);
+    }//pulls info from public Transaction above and converts to text
 }
