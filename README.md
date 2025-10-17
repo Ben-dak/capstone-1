@@ -1,8 +1,8 @@
 # Accounting Ledger
 ## Features
-- [ ] Add deposit (prompts for amount, description, vendor)
+- [ ] Add deposit 
 
-- [ ] Make payment (debit)
+- [ ] Make payment
 
 - [ ] Saves transactions to transactions.csv
 
@@ -10,12 +10,11 @@
 
 ## Getting Started
 
-- [ ] Open the project in IntelliJ
+- [ 1 ] Open the project in IntelliJ
 
-- [ ] Run the Main class (Ctrl+Shift+F10).
+- [ 2 ] Run the Main class
 
-- [ ] On the Home Menu choose one of the following:
-
+## Add Deposit/Add Payment
 
 ![Screenshot 2025-10-17 061902.jpg](images/Screenshot%202025-10-17%20061902.jpg)
 
@@ -38,4 +37,16 @@
 - [ ] Once you input this information it will loop back to the home menu and if done correctly, you will have stored this information in the transactions.csv like so:
 
 ![Screenshot 2025-10-17 062157.jpg](images/Screenshot%202025-10-17%20062157.jpg)
+
+## Ledger/Display all
+
+- [ ] To display the ledger menu, select "L" from the home menu:
+
+![Screenshot 2025-10-17 091521.jpg](images/Screenshot%202025-10-17%20091521.jpg)
+
+- [ ] Once selected, choose "A" to print all transactions from the CSV.  They will be displayed like this below:
+
+![Screenshot 2025-10-17 091534.jpg](images/Screenshot%202025-10-17%20091534.jpg)
+
+
 

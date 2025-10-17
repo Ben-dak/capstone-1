@@ -8,13 +8,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+public class Main { // main class
 
     static ArrayList<Transaction> tList = new ArrayList<>(); // Array List used for transactions
     static Scanner myScanner = new Scanner(System.in);
     static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-M-d|HH:mm:ss"); // Defines how date is rendered
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { //main method
         mainMenu(); // Kick off the main menu loop
     }
 
@@ -110,10 +110,9 @@ public class Main {
     }
 
     public static void mainMenu() {
-        readTransaction();
-        //Creates a scanner object to read input
-        String userInput;// Variable to store options
-        do { //do-while loop
+        readTransaction(); // Creates a scanner object to read input
+        String userInput;  // Variable to store options
+        do {               //do-while loop
             System.out.println("""
                     === Home Menu ===
                     D) Add Deposit
@@ -128,7 +127,7 @@ public class Main {
                 case "D" -> {
                     System.out.println("Add Deposit selected...");
                     myScanner.nextLine();
-                    addDeposit();
+                    addDeposit();                                   // collects info from addDeposit
                 }
                 case "P" -> {
                     System.out.println("Make Payment selected...");
@@ -139,7 +138,7 @@ public class Main {
                 case "X" -> System.out.println("Exiting application...");
                 default -> System.out.println("Invalid option. Please try again.");
             }
-        } while (!userInput.equals("X"));
+        } while (!userInput.equals("X")); // Keep looping until user chooses X
     }
 
     public static void ledgerMenu() {
@@ -164,7 +163,7 @@ public class Main {
                 default:
                     System.out.println("Invalid option. Please try again.");
             }
-        } while (!userInput.equals("H"));
+        } while (!userInput.equals("H")); // Keep looping until user chooses H
     }
 
     public static void printAllTransactions(ArrayList<Transaction> transactions) {
