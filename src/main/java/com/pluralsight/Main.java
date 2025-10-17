@@ -87,14 +87,38 @@ public class Main {
                 runAgain = false;
             }
             catch (NumberFormatException e) {
-                System.out.println("Error - enter a double" + e);
+                System.out.println("Error: " + e);
             }catch (IOException e) {
                 System.err.println("Error: " + e);
             }
 
         }
     }
+    public static void addPayment() {
+        boolean runAgain = true;
+        while (runAgain) {
+            try (FileWriter fileWriter = new FileWriter("src/main/resources/transactions.csv")) {
+                System.out.println("Enter an amount: ");
+                String amountString = myScanner.nextLine().trim();
+                System.out.println("Enter a description: ");
+                String description = myScanner.nextLine().trim();
+                System.out.println("Enter the vendor: ");
+                String vendor = myScanner.nextLine().trim();
+                double amount = Double.parseDouble(amountString);
+                Transaction deposit = new Transaction(description, vendor, amount);
+                tList.add(deposit);//Stores deposit info into the tList array
+                String formattedDate = LocalDateTime.now().format(dateTimeFormatter);
+                fileWriter.write(String.format("%s|%s|%s|-%.2f", formattedDate, description, vendor, amount));
+                runAgain = false;
+            }
+            catch (NumberFormatException e) {
+                System.out.println("Error: " + e);
+            }catch (IOException e) {
+                System.err.println("Error: " + e);
+            }
 
+        }
+    }
     public static void mainMenu() {
         readTransaction();
         //Creates a scanner object to read input
@@ -116,7 +140,11 @@ public class Main {
                     myScanner.nextLine();
                     addDeposit();
                 }
-                case "P" -> System.out.println("Make Payment selected...");
+                case "P" -> {
+                    System.out.println("Make Payment selected...");
+                    myScanner.nextLine();
+                    addDeposit();
+                }
                 case "L" -> ledgerMenu();
                 case "X" -> System.out.println("Exiting application...");
                 default -> System.out.println("Invalid option. Please try again.");

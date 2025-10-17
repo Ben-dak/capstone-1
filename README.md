@@ -35,5 +35,7 @@
 
 ![Screenshot 2025-10-17 062133.jpg](images/Screenshot%202025-10-17%20062133.jpg)
 
+- [ ] Once you input this information it will loop back to the home menu and if done correctly, you will have stored this information in the transactions.csv like so:
 
+![Screenshot 2025-10-17 062157.jpg](images/Screenshot%202025-10-17%20062157.jpg)
 
