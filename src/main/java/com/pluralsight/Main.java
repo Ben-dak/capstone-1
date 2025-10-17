@@ -10,69 +10,61 @@ import java.util.Scanner;
 
 public class Main {
 
-    static ArrayList<Transaction> tList = new ArrayList<>();
+    static ArrayList<Transaction> tList = new ArrayList<>(); // Array List used for transactions
     static Scanner myScanner = new Scanner(System.in);
-    static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-M-d|HH:mm:ss");
+    static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-M-d|HH:mm:ss"); // Defines how date is rendered
 
     public static void main(String[] args) {
-        mainMenu();
-
+        mainMenu(); // Kick off the main menu loop
     }
 
-    public static void writer() { //"writer()" is a Method to output data
-        try (BufferedWriter bWriter = new BufferedWriter(
-                new FileWriter("src/main/resources/transactions.csv"))) {
-            // Creates a BufferedWriter that wraps a FileWriter to write text to a file
-            // The file will be created (or overwritten) at this path
+    public static void writer() {                                                  // Writes the current list to CSV
+        try (BufferedWriter bWriter = new BufferedWriter(                          // try‑with resources ensures the writer closes
+                new FileWriter("src/main/resources/transactions.csv"))) { // Creates a BufferedWriter that wraps a FileWriter to write text to a file
 
             bWriter.write("date|time|description|vendor|amount"); //writes header to file
-            bWriter.newLine(); // Moves to a new line after writing the header
+            bWriter.newLine();                                        // Moves to a new line after writing the header
 
-
-            for (Transaction transactions : tList) { // Loops through each Transaction
-                bWriter.write(transactions.toString());// Converts the Transaction to text
-                bWriter.newLine();// Starts a new line for the next transaction
+            for (Transaction transactions : tList) {    // Loops through each Transaction
+                bWriter.write(transactions.toString()); // Converts the Transaction to text
+                bWriter.newLine();                      // Starts a new line for the next transaction
             }
 
-        } catch (IOException e) { // If something goes wrong while writing
-            System.err.println("Error writing file: " + e.getMessage());// prints error message to the console
+        } catch (IOException e) {                                        // If something goes wrong while writing - prints error message to the console
+            System.err.println("Error writing file: " + e.getMessage());
         }
     }
 
     public static void readTransaction() {
-        try (BufferedReader bReader = new BufferedReader(new FileReader("src/main/resources/transactions.csv"))) {
-            // Creates a BufferedReader that wraps a FileReader to read text from the file
-            // try-with automatically closes bReader when done (even if an error happens)
-            String header = bReader.readLine();
-            // Reads the first line of the file (the header: "date|time|description|vendor|amount")
-            // Header is just read and ignored
-            String info; //info holds each line of text
+        try (BufferedReader bReader = new BufferedReader(
+                new FileReader("src/main/resources/transactions.csv"))) { // Reads the transactions.csv
+            String header = bReader.readLine();                                   // Header is just read and ignored
+            String info;                                                          //info holds each line of text
 
-            while ((info = bReader.readLine()) != null) { // When readLine() returns null, it means there are no more lines
-                String[] parts = info.split("\\|"); // Splits the line into separate pieces using "|"
-                LocalDate date = LocalDate.parse(parts[0]); //converts date string into LocalDate object
-                LocalTime time = LocalTime.parse(parts[1]);//converts time string into LocalTime object
+            while ((info = bReader.readLine()) != null) {   // When readLine() returns null it means there are no more lines
+                String[] parts = info.split("\\|");   // Splits the line into separate pieces using "|" (pipe)
+                LocalDate date = LocalDate.parse(parts[0]); // converts date string into LocalDate object
+                LocalTime time = LocalTime.parse(parts[1]); // converts time string into LocalTime object
                 String description = parts[2];
                 String vendor = parts[3];
-                double amount = Double.parseDouble(parts[4]); // Converts the amount into a double
+                double amount = Double.parseDouble(parts[4]); // Converts "amount" string into a double
 
-                Transaction transactions = new Transaction(date, time, description, vendor, amount);// Creates a new Transaction object using the data we just read and converted
-                tList.add(transactions);// Adds this new Transaction object to the list (tList)
+                Transaction transactions = new Transaction(date, time, description, vendor, amount); // Creates a new Transaction object using the data we just read and converted
+                tList.add(transactions);                                                             // Adds this new Transaction object to the Array list (tList)
             }
 
-        } catch (FileNotFoundException e) {// runs if the file can’t be found
+        } catch (FileNotFoundException e) {                 // runs if the file can’t be found
             System.err.println("Error: " + e.getMessage());
-        } catch (IOException e) {// This catch handles general input/output problems
+        } catch (IOException e) {                           // This catch handles general input/output problems
             System.err.println("Error" + e.getMessage());
         }
-
     }
 
     public static void addDeposit() {
         boolean runAgain = true;
         while (runAgain) {
             try (FileWriter fileWriter = new FileWriter("src/main/resources/transactions.csv")) {
-                System.out.println("Enter an amount: ");
+                System.out.println("Enter an amount: ");                            //Prompts the user to enter an amount
                 String amountString = myScanner.nextLine().trim();
                 System.out.println("Enter a description: ");
                 String description = myScanner.nextLine().trim();
@@ -80,44 +72,43 @@ public class Main {
                 String vendor = myScanner.nextLine().trim();
                 double amount = Double.parseDouble(amountString);
                 Transaction deposit = new Transaction(description, vendor, amount);
-                tList.add(deposit);//Stores deposit info into the tList array
+                tList.add(deposit);                                                 //Stores deposit info into the tList array
                 String formattedDate = LocalDateTime.now().format(dateTimeFormatter);
                 fileWriter.write(String.format("%s|%s|%s|%.2f", formattedDate, description, vendor, amount));
                 runAgain = false;
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Error: " + e);
-            }catch (IOException e) {
+            } catch (IOException e) {
                 System.err.println("Error: " + e);
             }
-
         }
     }
+
     public static void addPayment() {
         boolean runAgain = true;
         while (runAgain) {
             try (FileWriter fileWriter = new FileWriter("src/main/resources/transactions.csv")) {
-                System.out.println("Enter an amount: ");
+                System.out.println("Enter an amount: ");                              //Prompts the user to enter an amount
                 String amountString = myScanner.nextLine().trim();
                 System.out.println("Enter a description: ");
                 String description = myScanner.nextLine().trim();
                 System.out.println("Enter the vendor: ");
                 String vendor = myScanner.nextLine().trim();
                 double amount = Double.parseDouble(amountString);
-                Transaction deposit = new Transaction(description, vendor, amount);
-                tList.add(deposit);//Stores deposit info into the tList array
+                amount = -Math.abs(amount);                                           //Ensures the amount is negative
+                Transaction payment  = new Transaction(description, vendor, amount);
+                tList.add(payment);                                                  //Stores deposit info into the tList array
                 String formattedDate = LocalDateTime.now().format(dateTimeFormatter);
-                fileWriter.write(String.format("%s|%s|%s|-%.2f", formattedDate, description, vendor, amount));
+                fileWriter.write(String.format("%s|%s|%s|%.2f", formattedDate, description, vendor, amount));
                 runAgain = false;
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Error: " + e);
-            }catch (IOException e) {
+            } catch (IOException e) {
                 System.err.println("Error: " + e);
             }
-
         }
     }
+
     public static void mainMenu() {
         readTransaction();
         //Creates a scanner object to read input
@@ -142,7 +133,7 @@ public class Main {
                 case "P" -> {
                     System.out.println("Make Payment selected...");
                     myScanner.nextLine();
-                    addDeposit();
+                    addPayment();
                 }
                 case "L" -> ledgerMenu();
                 case "X" -> System.out.println("Exiting application...");
@@ -181,13 +172,9 @@ public class Main {
             System.out.println("No transactions found.");
             return;
         }
-
         System.out.println("=== All Transactions ===");
-
         for (Transaction t : transactions) {
             System.out.println(t);
         }
-
     }
-
 }
