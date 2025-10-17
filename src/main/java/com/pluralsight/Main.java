@@ -70,11 +70,11 @@ public class Main { // main class
                 String description = myScanner.nextLine().trim();
                 System.out.println("Enter the vendor: ");
                 String vendor = myScanner.nextLine().trim();
-                double amount = Double.parseDouble(amountString); // converts the string "amount" into a double
-                Transaction deposit = new Transaction(description, vendor, amount);// Creates a new Transaction object using the user’s input (description, vendor, amount)
+                double amount = Double.parseDouble(amountString);
+                Transaction deposit = new Transaction(description, vendor, amount);
                 tList.add(deposit); //Stores deposit info into the tList array
-                String formattedDate = LocalDateTime.now().format(dateTimeFormatter); // captures the current date and time and formats it into a readable string
-                fileWriter.write(String.format("%s|%s|%s|%.2f", formattedDate, description, vendor, amount));//String.format() combines variables into a single string
+                String formattedDate = LocalDateTime.now().format(dateTimeFormatter);
+                fileWriter.write(String.format("%s|%s|%s|%.2f", formattedDate, description, vendor, amount));
                 runAgain = false; // ends the loop after a successful entry which prevents it from running again
             } catch (NumberFormatException e) { // catches errors with amount/numbers
                 System.out.println("Error: " + e);
@@ -85,25 +85,25 @@ public class Main { // main class
     }
 
     public static void addPayment() {
-        boolean runAgain = true;
-        while (runAgain) {
-            try (FileWriter fileWriter = new FileWriter("src/main/resources/transactions.csv")) {
-                System.out.println("Enter an amount: ");                           //Prompts the user to enter an amount
-                String amountString = myScanner.nextLine().trim();
+        boolean runAgain = true; // starts as true so the while loop will run at least once
+        while (runAgain) { // repeats everything inside the loop until runAgain is false
+            try (FileWriter fileWriter = new FileWriter("src/main/resources/transactions.csv")) { // combines variables into a single formatted string using placeholders
+                System.out.println("Enter an amount: "); // Prompts the user to enter an amount
+                String amountString = myScanner.nextLine().trim(); // .trim trims any blank spaces after/before the input
                 System.out.println("Enter a description: ");
                 String description = myScanner.nextLine().trim();
                 System.out.println("Enter the vendor: ");
                 String vendor = myScanner.nextLine().trim();
-                double amount = Double.parseDouble(amountString);
+                double amount = Double.parseDouble(amountString); // converts the string "amount" into a double
                 amount = -Math.abs(amount);                                           //Ensures the amount is negative
-                Transaction payment  = new Transaction(description, vendor, amount);
+                Transaction payment  = new Transaction(description, vendor, amount); // Creates a new Transaction object using the user’s input (description, vendor, amount)
                 tList.add(payment);                                               //Stores deposit info into the tList array
-                String formattedDate = LocalDateTime.now().format(dateTimeFormatter);
-                fileWriter.write(String.format("%s|%s|%s|%.2f", formattedDate, description, vendor, amount));
-                runAgain = false;
-            } catch (NumberFormatException e) {
+                String formattedDate = LocalDateTime.now().format(dateTimeFormatter); // captures the current date and time and formats it into a readable string
+                fileWriter.write(String.format("%s|%s|%s|%.2f", formattedDate, description, vendor, amount));// String.format() combines variables into a single string
+                runAgain = false; // ends the loop after a successful entry which prevents it from running again
+            } catch (NumberFormatException e) { // catches errors with amount/numbers
                 System.out.println("Error: " + e);
-            } catch (IOException e) {
+            } catch (IOException e) { //file related errors
                 System.err.println("Error: " + e);
             }
         }
