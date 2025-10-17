@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class Main {
 
     static ArrayList<Transaction> tList = new ArrayList<>();
-    static Main app = new Main();
     static Scanner myScanner = new Scanner(System.in);
     static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-M-d|HH:mm:ss");
 
