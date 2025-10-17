@@ -15,7 +15,7 @@ public class Main { // main class
     static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-M-d|HH:mm:ss"); // Defines how date is rendered
 
     public static void main(String[] args) { //main method
-        mainMenu(); // Kick off the main menu loop
+        mainMenu();                          // Kick off the main menu loop
     }
 
     public static void writer() {                                                  // Writes the current list to CSV
@@ -44,7 +44,7 @@ public class Main { // main class
             while ((info = bReader.readLine()) != null) {   // When readLine() returns null it means there are no more lines
                 String[] parts = info.split("\\|");   // Splits the line into separate pieces using "|" (pipe)
                 LocalDate date = LocalDate.parse(parts[0]); // converts date string into LocalDate object
-                LocalTime time = LocalTime.parse(parts[1]); // converts time string into LocalTime object
+                LocalTime time = LocalTime.parse(parts[1]); // converts time string into LocalTime object (did this for these as I wanted to keep them all together so I could
                 String description = parts[2];
                 String vendor = parts[3];
                 double amount = Double.parseDouble(parts[4]); // Converts "amount" string into a double
@@ -160,7 +160,7 @@ public class Main { // main class
                 case "H":
                     System.out.println("Exiting application...");
                     break;
-                default:
+                default: // Works as the catch-all of anything other than A or H (the designated options to select from)
                     System.out.println("Invalid option. Please try again.");
             }
         } while (!userInput.equals("H")); // Keep looping until user chooses H

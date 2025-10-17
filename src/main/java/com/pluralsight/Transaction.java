@@ -11,12 +11,8 @@ public class Transaction {
     double amount;
 
     public Transaction(LocalDate date, LocalTime tm, String desc, String vend, double amt) {
-        this.vendor = vend;
-        this.date = date;
-        this.time = tm;
-        this.description = desc;
-        this.amount = amt;
     }
+
     public Transaction(String description, String vendor, double amount) {
         this.date = LocalDate.now();
         this.time = LocalTime.now();
@@ -62,6 +58,6 @@ public class Transaction {
     }
 
     public String toString() {
-        return String.format("%s|%s|%s|%s|%.2f", date, time, description, vendor, amount); //pulls info from public Transaction above and converts to text
+        return String.format("%s|%s|%s|%s|%.2f", date, time, description, vendor, amount); //pulls info from public Transaction class above and converts to text string
     }
 }

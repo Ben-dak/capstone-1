@@ -1,4 +1,9 @@
 # Accounting Ledger
+
+## Overview 
+
+This application allows users to record and manage financial transactions
+
 ## Features
 - [ ] Add deposit 
 
