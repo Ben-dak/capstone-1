@@ -81,13 +81,13 @@ public class Main {
                 String vendor = myScanner.nextLine().trim();
                 double amount = Double.parseDouble(amountString);
                 Transaction deposit = new Transaction(description, vendor, amount);
-                tList.add(deposit);
+                tList.add(deposit);//Stores deposit info into the tList array
                 String formattedDate = LocalDateTime.now().format(dateTimeFormatter);
                 fileWriter.write(String.format("%s|%s|%s|%.2f", formattedDate, description, vendor, amount));
                 runAgain = false;
             }
-            catch (NumberFormatException ex) {
-                System.out.println("Error - enter a double");
+            catch (NumberFormatException e) {
+                System.out.println("Error - enter a double" + e);
             }catch (IOException e) {
                 System.err.println("Error: " + e);
             }
